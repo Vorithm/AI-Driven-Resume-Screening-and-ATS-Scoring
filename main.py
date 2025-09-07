@@ -21,6 +21,7 @@ import datefinder
 
 # Setup
 nltk.download('stopwords', quiet=True)
+spacy.cli.download("en_core_web_md")
 nlp = spacy.load("en_core_web_md")
 EN_STOPWORDS = set(nltk_stopwords.words('english'))
 
@@ -693,3 +694,4 @@ Adding or improving these missing skills can strengthen your resume and increase
 
 if __name__ == "__main__":
     main()
+
