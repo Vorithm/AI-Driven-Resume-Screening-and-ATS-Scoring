@@ -17,6 +17,8 @@ import datetime
 from dateutil import parser
 from rank_bm25 import BM25Okapi  
 import datefinder  
+import torch
+from sentence_transformers import SentenceTransformer
 
 
 # Setup
@@ -47,9 +49,9 @@ new_top_skills = [
 ]
 
 # Sentence-Transformer (semantic)
-model = SentenceTransformer("all-MiniLM-L6-v2")
+model = SentenceTransformer("all-MiniLM-L6-v2", device=torch.device("cpu"))
 # Precompute skill embeddings once (perf optimization)
-SKILL_EMB = model.encode(new_top_skills, convert_to_tensor=True)
+SKILL_EMB = model.encode(new_top_skills, convert_to_tensor=True, device=torch.device("cpu"))
 
 
 IMPACT_VERBS = {
@@ -693,5 +695,6 @@ Adding or improving these missing skills can strengthen your resume and increase
 
 if __name__ == "__main__":
     main()
+
 
 
