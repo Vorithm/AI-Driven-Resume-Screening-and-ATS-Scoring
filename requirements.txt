@@ -1,0 +1,14 @@
+streamlit
+PyPDF2
+spacy
+nltk
+numpy
+plotly
+matplotlib
+scikit-learn
+sentence-transformers
+pandas
+fpdf
+python-dateutil
+rank_bm25
+datefinder
