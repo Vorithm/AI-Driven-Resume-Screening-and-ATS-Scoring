@@ -1,16 +1,15 @@
-streamlit==1.28.0
-PyPDF2==3.0.1
-spacy==3.8.0
-nltk==3.8.1
-numpy==1.26.4
-pandas==2.1.1
-matplotlib==3.8.0
-scikit-learn==1.3.2
-sentence-transformers==2.2.2
-fpdf==1.7.2
-python-dateutil==2.8.2
-rank_bm25==0.2.2
-datefinder==0.7.1
-torch==2.0.1
-# SpaCy model
-https://github.com/explosion/spacy-models/releases/download/en_core_web_md-3.8.0/en_core_web_md-3.8.0-py3-none-any.whl
+streamlit
+PyPDF2
+spacy
+nltk
+numpy
+pandas
+matplotlib
+scikit-learn
+sentence-transformers
+fpdf
+python-dateutil
+rank_bm25
+datefinder
+torch
+en-core-web-md  # SpaCy model
