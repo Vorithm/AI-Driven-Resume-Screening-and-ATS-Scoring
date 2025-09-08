@@ -21,16 +21,20 @@ import torch
 from sentence_transformers import SentenceTransformer
 
 
-try:
-    nlp = spacy.load("en_core_web_md")
-except OSError:
-    from spacy.cli import download
-    download("en_core_web_md")
-    nlp = spacy.load("en_core_web_md")
-
-# Setup NLTK stopwords
+# Download NLTK stopwords
 nltk.download('stopwords', quiet=True)
 EN_STOPWORDS = set(nltk_stopwords.words('english'))
+
+# Load SpaCy model from local folder
+MODEL_DIR = "models/en_core_web_md"
+
+if not os.path.exists(MODEL_DIR):
+    # Download model to the project folder if missing
+    from spacy.cli import download
+    download("en_core_web_md", target=MODEL_DIR)
+
+# Load the model from the local folder
+nlp = spacy.load(MODEL_DIR)
 
 # Skill dictionary (extended)
 new_top_skills = [
@@ -701,6 +705,7 @@ Adding or improving these missing skills can strengthen your resume and increase
 
 if __name__ == "__main__":
     main()
+
 
 
 
