@@ -12,3 +12,4 @@ python-dateutil
 rank_bm25
 datefinder
 torch
+plotly
