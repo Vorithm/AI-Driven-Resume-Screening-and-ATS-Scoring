@@ -19,7 +19,7 @@ from rank_bm25 import BM25Okapi
 import datefinder  
 import torch
 from sentence_transformers import SentenceTransformer
-
+import os 
 
 # Download NLTK stopwords
 nltk.download('stopwords', quiet=True)
@@ -705,6 +705,7 @@ Adding or improving these missing skills can strengthen your resume and increase
 
 if __name__ == "__main__":
     main()
+
 
 
 
