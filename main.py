@@ -1,3 +1,20 @@
+import spacy
+import os
+
+MODEL_NAME = "en_core_web_sm"
+
+try:
+    # Try loading the model
+    nlp = spacy.load(MODEL_NAME)
+except OSError:
+    # Download model locally if missing
+    from spacy.cli import download
+    download(MODEL_NAME)
+    nlp = spacy.load(MODEL_NAME)
+
+print(f"Loaded SpaCy model: {MODEL_NAME}")
+
+
 import streamlit as st
 from PyPDF2 import PdfReader
 import re
@@ -19,22 +36,13 @@ from rank_bm25 import BM25Okapi
 import datefinder  
 import torch
 from sentence_transformers import SentenceTransformer
-import os 
+
 
 
 # Setup NLTK stopwords
 nltk.download('stopwords', quiet=True)
 EN_STOPWORDS = set(nltk_stopwords.words('english'))
 
-# Load SpaCy model
-try:
-    nlp = spacy.load("en_core_web_sm")  # small model, lightweight
-except OSError:
-    import spacy.cli
-    spacy.cli.download("en_core_web_sm")
-    nlp = spacy.load("en_core_web_sm")
-
-print("SpaCy model loaded successfully ✅")
     
 # Skill dictionary (extended)
 new_top_skills = [
@@ -706,6 +714,7 @@ Adding or improving these missing skills can strengthen your resume and increase
 
 if __name__ == "__main__":
     main()
+
 
 
 
