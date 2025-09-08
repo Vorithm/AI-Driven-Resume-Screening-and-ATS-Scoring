@@ -28,12 +28,13 @@ EN_STOPWORDS = set(nltk_stopwords.words('english'))
 
 # Load SpaCy model
 try:
-    nlp = spacy.load("en_core_web_sm")
+    nlp = spacy.load("en_core_web_sm")  # small model, lightweight
 except OSError:
-    # fallback if somehow not found
-    from spacy.cli import download
-    download("en_core_web_sm")
+    import spacy.cli
+    spacy.cli.download("en_core_web_sm")
     nlp = spacy.load("en_core_web_sm")
+
+print("SpaCy model loaded successfully ✅")
     
 # Skill dictionary (extended)
 new_top_skills = [
@@ -58,7 +59,8 @@ new_top_skills = [
 ]
 
 # Sentence-Transformer (semantic)
-model = SentenceTransformer("all-MiniLM-L6-v2", device=torch.device("cpu"))
+device = torch.device("cpu")
+model = SentenceTransformer("all-MiniLM-L6-v2", device=device)
 # Precompute skill embeddings once (perf optimization)
 SKILL_EMB = model.encode(new_top_skills, convert_to_tensor=True, device=torch.device("cpu"))
 
@@ -704,6 +706,7 @@ Adding or improving these missing skills can strengthen your resume and increase
 
 if __name__ == "__main__":
     main()
+
 
 
 
