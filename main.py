@@ -1,20 +1,3 @@
-import spacy
-import os
-
-MODEL_NAME = "en_core_web_sm"
-
-try:
-    # Try loading the model
-    nlp = spacy.load(MODEL_NAME)
-except OSError:
-    # Download model locally if missing
-    from spacy.cli import download
-    download(MODEL_NAME)
-    nlp = spacy.load(MODEL_NAME)
-
-print(f"Loaded SpaCy model: {MODEL_NAME}")
-
-
 import streamlit as st
 from PyPDF2 import PdfReader
 import re
@@ -37,7 +20,9 @@ import datefinder
 import torch
 from sentence_transformers import SentenceTransformer
 
-
+MODEL_NAME = "en_core_web_sm"
+nlp = spacy.load(MODEL_NAME)
+print(f"Loaded SpaCy model: {MODEL_NAME}")
 
 # Setup NLTK stopwords
 nltk.download('stopwords', quiet=True)
@@ -714,6 +699,7 @@ Adding or improving these missing skills can strengthen your resume and increase
 
 if __name__ == "__main__":
     main()
+
 
 
 
