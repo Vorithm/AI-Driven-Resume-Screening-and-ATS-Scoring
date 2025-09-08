@@ -27,13 +27,7 @@ nltk.download('stopwords', quiet=True)
 EN_STOPWORDS = set(nltk_stopwords.words('english'))
 
 # Load SpaCy model
-try:
-    nlp = spacy.load("en_core_web_md")  # Directly load from SpaCy cache
-except OSError:
-    # Agar model installed nahi hai, runtime me download
-    from spacy.cli import download
-    download("en_core_web_md")  # Don't use 'target'
-    nlp = spacy.load("en_core_web_md")
+nlp = spacy.load("en_core_web_sm")  # small model, no download needed
     
 # Skill dictionary (extended)
 new_top_skills = [
@@ -704,6 +698,7 @@ Adding or improving these missing skills can strengthen your resume and increase
 
 if __name__ == "__main__":
     main()
+
 
 
 
