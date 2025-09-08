@@ -20,27 +20,21 @@ import datefinder
 import torch
 from sentence_transformers import SentenceTransformer
 import os 
-from spacy.cli import download
+
 
 # Setup NLTK stopwords
 nltk.download('stopwords', quiet=True)
 EN_STOPWORDS = set(nltk_stopwords.words('english'))
 
-# Path to local model
-MODEL_DIR = "models/en_core_web_md"
-
-# Agar folder nahi hai, create karo
-if not os.path.exists(MODEL_DIR):
-    os.makedirs(MODEL_DIR)
-
 # Load SpaCy model
 try:
-    nlp = spacy.load(MODEL_DIR)
+    nlp = spacy.load("en_core_web_md")  # Directly load from SpaCy cache
 except OSError:
-    # Agar model folder me nahi hai, runtime me download karo
-    download("en_core_web_md", target=MODEL_DIR)
-    nlp = spacy.load(MODEL_DIR)
-
+    # Agar model installed nahi hai, runtime me download
+    from spacy.cli import download
+    download("en_core_web_md")  # Don't use 'target'
+    nlp = spacy.load("en_core_web_md")
+    
 # Skill dictionary (extended)
 new_top_skills = [
     "algorithms", "analytical", "analytical skills", "analytics", "artificial intelligence", "aws",
@@ -710,6 +704,7 @@ Adding or improving these missing skills can strengthen your resume and increase
 
 if __name__ == "__main__":
     main()
+
 
 
 
