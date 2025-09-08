@@ -12,4 +12,3 @@ python-dateutil
 rank_bm25
 datefinder
 torch
-en-core-web-md  # SpaCy model
